@@ -15,8 +15,9 @@ const salesBtn = [
 
 
 function Button() {
-    const [selectedSale, setSelectedSale] = useState(0);
-    const [showSales, setShowSales] = useState(false);
+    const [selectedSale, setSelectedSale] = useState<number>(0);
+    const [showSales, setShowSales] = useState<boolean>(false);
+    const hideSales =() => setShowSales(!showSales)
 
     const renderSales = () => {
         if (!showSales) {
@@ -26,7 +27,7 @@ function Button() {
         switch (selectedSale) {
             case 0:
             case 1:
-                return <Trade selectedSale={selectedSale} />;
+                return <Trade selectedSale={selectedSale}  hideSales={hideSales} />;
             default:
                 return null;
         }

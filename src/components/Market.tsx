@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Btn from './GradientBtn'
 interface MarketProps {
-  sales: number
+  sales: number;
 }
 const Market: React.FC<MarketProps> = ({sales}) => {
   return (

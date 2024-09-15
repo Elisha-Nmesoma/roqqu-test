@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Btn from './GradientBtn'
 import Type from './Type'
 interface StopLimitProps {
-  sales: number
+  sales: number;
 }
 const StopLimit: React.FC<StopLimitProps> = ({sales}) => {
   return (

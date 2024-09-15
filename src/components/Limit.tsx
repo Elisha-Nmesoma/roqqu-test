@@ -4,7 +4,7 @@ import Btn from './GradientBtn'
 import Type from './Type'
 
 interface LimitProps {
-  sales: number
+  sales: number;
 }
 const Limit:React.FC<LimitProps> = ({ sales }) => {
   return (

@@ -19,9 +19,10 @@ const Trades = [
 ];
 interface TradeProps {
   selectedSale?: number; // Specify the type of selectedSale
+  hideSales?: () => void; 
 }
 
-const Trade: React.FC<TradeProps>  = ({ selectedSale }) => {
+const Trade: React.FC<TradeProps>  = ({ selectedSale,  hideSales }) => {
   const [sales, setSales] = useState<number>(0); // Default to Buy
   const [selectedType, setSelectedType] = useState(Trades[0].type[0]); // Default to first type of Buy
   const [marketOrder, setMarketOrder] = useState<number>(0); // Default to Limit (index 0)
@@ -126,7 +127,8 @@ const Trade: React.FC<TradeProps>  = ({ selectedSale }) => {
             </p>
           </div>
 
-          <button className='text-white bg-blue rounded-md text-sm py-2 px-4 w-fit'>
+          <button className='text-white bg-blue rounded-md text-sm py-2 px-4 w-fit'
+          onClick={ hideSales}>
             Deposit
           </button>
         </div>

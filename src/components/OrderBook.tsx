@@ -63,7 +63,7 @@ const OrderBook = () => {
 
 
   return (
-    <section className="py-2">
+    <section className="p-2 h-full">
       {/* WebSocket component to update orderbook */}
       <WebSocketOrderBook setOrderbook={setOrderbook} />
 
@@ -131,11 +131,11 @@ const OrderBook = () => {
         {/* Sell orders (ask) */}
         <div className={`overflow-y-scroll scrollbar flex flex-col 
         ${
-          activeButton === 1 ? 'h-[11rem] md:h-[11.6rem]' 
+          activeButton === 1 ? 'h-[calc(100%-5rem)] md:h-[11.6rem]' 
           : 
           activeButton === 2 ? 'h-0' 
           :
-           activeButton === 3 ? 'h-[22rem] md:h-[24.2rem]'
+           activeButton === 3 ? 'h-[calc(100%-6rem)] md:h-[24.2rem]'
            : " "  }
              `}>
           {filteredOrderbook.sell.map((item, index) => (
@@ -155,9 +155,9 @@ const OrderBook = () => {
         {/* Buy orders (bid) */}
       <div className={`overflow-y-scroll scrollbar flex flex-col  
          ${
-          activeButton === 1 ? 'h-[11rem] md:h-[11.6rem]' 
+          activeButton === 1 ? 'h-[calc(100%-5rem)] md:h-[11.6rem]' 
           : 
-          activeButton === 2 ? ' h-[22rem] md:h-[23.4rem]' 
+          activeButton === 2 ? ' h-[calc(100%-6rem)] md:h-[23.4rem]' 
           :
            activeButton === 3 ? 'h-0'
            : " "  }  `}>
