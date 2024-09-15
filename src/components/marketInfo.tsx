@@ -63,7 +63,7 @@ const MarketInfo = () => {
                         <div className='w-5 h-5 relative'>
                             <Image src="/Frame.png" alt="" fill className='object-contain' />
                         </div>
-                        <p >{item.price}</p>
+                        {item.price}
                     </div>
 
 
