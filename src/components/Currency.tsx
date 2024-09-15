@@ -28,8 +28,8 @@ function Currency() {
             img: "/euro.png",
         }
     ];
-    const [currency, setCurency] = useState("NGN");
-    const [country, setCountry] = useState(false);
+    const [currency, setCurency] = useState<string>("NGN");
+    const [country, setCountry] = useState<boolean>(false);
 
     return (
         <button className='flex gap-1 items-center relative'

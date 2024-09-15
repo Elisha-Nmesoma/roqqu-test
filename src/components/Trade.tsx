@@ -17,11 +17,14 @@ const Trades = [
     type: ["Limit", "Market", "Stop-Limit"]
   }
 ];
+interface TradeProps {
+  selectedSale?: number; // Specify the type of selectedSale
+}
 
-const Trade = ({ selectedSale }) => {
-  const [sales, setSales] = useState(0); // Default to Buy
+const Trade: React.FC<TradeProps>  = ({ selectedSale }) => {
+  const [sales, setSales] = useState<number>(0); // Default to Buy
   const [selectedType, setSelectedType] = useState(Trades[0].type[0]); // Default to first type of Buy
-  const [marketOrder, setMarketOrder] = useState(0); // Default to Limit (index 0)
+  const [marketOrder, setMarketOrder] = useState<number>(0); // Default to Limit (index 0)
 
   // Update sales when selectedSale changes (for mobile devices)
   useEffect(() => {
@@ -39,14 +42,14 @@ const Trade = ({ selectedSale }) => {
   }, [sales]);
 
   // Handle sales click (Buy/Sell button)
-  const salesClick = (index) => {
+  const salesClick = (index: number) => {
     setSales(index); // Set Buy or Sell
     setSelectedType(Trades[index].type[0]); // Set the first order type by default
     setMarketOrder(0); // Reset to 'Limit'
   };
 
   // Handle changing the selected type
-  const handleTypeChange = (type, index) => {
+  const handleTypeChange = (type:string, index: number) => {
     setSelectedType(type);
     setMarketOrder(index); // Set the market order index (0 for Limit, 1 for Market, 2 for Stop-Limit)
   };
@@ -90,7 +93,7 @@ const Trade = ({ selectedSale }) => {
             <button
               key={index}
               className={`text-grey text-xs p-2 w-1/2 text-center transition duration-150 ease-in-out ${index === sales ? 'text-white rounded-lg border bg-secondary2' : ''}`}
-              style={index === sales ? { borderColor: item.color } : null}
+              style={index === sales ? { borderColor: item.color } : undefined}
               onClick={() => salesClick(index)}
             >
               {item.title}

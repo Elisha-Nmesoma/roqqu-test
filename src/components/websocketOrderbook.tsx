@@ -97,8 +97,6 @@ const WebSocketOrderBook = ({ setOrderbook, setLastPrice, setBTCTickerData }: We
         return () => {
             if (wsTicker) {wsTicker.onclose = () => setTimeout(() => 3000)}
             if (ws) {ws.onclose = () => setTimeout(() => 3000)}
-            // if (ws) ws.close();
-            // if (wsTicker) wsTicker.close();
             if (socket) socket.close();
         };
     }, [setOrderbook, setLastPrice, setBTCTickerData]);

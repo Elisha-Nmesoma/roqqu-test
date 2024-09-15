@@ -12,10 +12,7 @@ import OrderBook from "./OrderBook"
 
 const MobileTradeView = () => {
   const view = ["Chart", "Orderbook", "Recent trade"];
-  const [selectedView, setSelectedView] = useState(0); // Default to "Chart" view
-  const tradeClick = (index) => {
-    setSelectedView(index);
-  };
+  const [selectedView, setSelectedView] = useState<number>(0); // Default to "Chart" view
 
   // Function to render the correct component based on selected view
   const renderSelectedView = () => {
@@ -37,8 +34,7 @@ const MobileTradeView = () => {
           <button  
           key={index}
           className={`w-2/6 py-1.5 text-center  ${index === selectedView ? 'text-white bg-[#21262C] rounded-md border-r-0 px-4 ' : ''}`}
-          onClick={() => tradeClick(index)} 
-          >
+          onClick={() => setSelectedView(index)}  >
             {item}
             </button>
         ))}

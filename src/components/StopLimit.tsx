@@ -2,8 +2,10 @@ import React from 'react'
 import Image from 'next/image'
 import Btn from './GradientBtn'
 import Type from './Type'
-
-const StopLimit = ({sales}) => {
+interface StopLimitProps {
+  sales: number
+}
+const StopLimit: React.FC<StopLimitProps> = ({sales}) => {
   return (
     <div className='flex flex-col gap-4'>
     {/* market trade type */}

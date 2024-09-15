@@ -4,14 +4,11 @@ import { useState } from 'react';
 
 function Type() {
     const options = ['Fill or kill', 'Good till cancelled', 'Good till date', 'Immediate or cancel'];
-    const [type, setType] = useState(options[1]);
-    const [displayType, setDisplayType] = useState(false)
-    const typeClick = () => {
-        setDisplayType(!displayType)
-    }
+    const [type, setType] = useState<string>(options[1]);
+    const [displayType, setDisplayType] = useState<boolean>(false)
     return (
         <section className='flex items-center gap-1 relative'
-         onClick={()=> typeClick()}>
+         onClick={()=>  setDisplayType(!displayType)}>
             <button>{type}</button>
             <span>
                 <Image src="/Vector.png" alt="" width={5} height={5} />

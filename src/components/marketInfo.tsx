@@ -3,7 +3,6 @@ import {useState} from 'react'
 import Image from 'next/image';
 import ClosePrice from './ClosePrice';
 import WebSocketOrderBook from './websocketOrderbook';
-import { Sign } from 'crypto';
 
 const MarketInfo = () => {
     const [BTCTickerData, setBTCTickerData] = useState({

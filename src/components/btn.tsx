@@ -16,20 +16,21 @@ const salesBtn = [
 
 function Button() {
     const [selectedSale, setSelectedSale] = useState(0);
-    const salesClick = (index) => {
-        setSelectedSale(index)
-    }
     const [showSales, setShowSales] = useState(false);
-    const rendersales = () => {
+
+    const renderSales = () => {
+        if (!showSales) {
+            return null; // Do not render sales if showSales is false
+        }
+    
         switch (selectedSale) {
             case 0:
-                return <Trade selectedSale={selectedSale} />
             case 1:
-                return <Trade selectedSale={selectedSale} />
+                return <Trade selectedSale={selectedSale} />;
             default:
                 return null;
         }
-    }
+    };
     return (
         <div>
             <div className='flex gap-3 justify between bg-secondary p-3 fixed w-full left-0 bottom-8 md:hidden  '>
@@ -38,15 +39,15 @@ function Button() {
                         className='mobile_btn'
                         style={{ backgroundColor: item.color }}
                         onClick={() => {
-                            salesClick(index),
-                                setShowSales(!showSales)
+                            setSelectedSale(index),
+                            setShowSales(!showSales)
                         }} >
                         {item.title}</button>
                 ))}
             </div>
             {showSales && (
                 <div className='trade md:hidden'>
-                    <div className='w-full bg-primary fixed bottom-0 md:hidden p-6 rounded-t-3xl  z-20'>{rendersales()}</div>
+                    <div className='w-full bg-primary fixed bottom-0 md:hidden p-6 rounded-t-3xl  z-20'>{renderSales()}</div>
                 </div>
             )}
         </div>

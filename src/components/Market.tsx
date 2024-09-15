@@ -1,10 +1,11 @@
 import Image from 'next/image'
 import Btn from './GradientBtn'
-
-const Market = ({sales}) => {
+interface MarketProps {
+  sales: number
+}
+const Market: React.FC<MarketProps> = ({sales}) => {
   return (
     <div className='flex flex-col gap-4'>
-   
 
     {/* ammount */}
     <div className='rounded-md border border-border3 flex justify-between p-2'>

@@ -9,18 +9,14 @@ function Navbar() {
     const isDesktop = ScreenWidth();
     
     //hamburgerclick for mobile 
-    const [burger, setBurger] = useState(false);
+    const [burger, setBurger] = useState<boolean>(false);
     const hamburgerClick = () => {
-        // setBurger(!burger);
         setTimeout(() => {
             setBurger(!burger)
         }, 500)
     };
     //menu clicks for desktop
-    const [menu, setMenu] = useState(null);
-    const menuClicks = (index) => {
-        setMenu(index)
-    }
+    const [menu, setMenu] = useState<null | number>(null);
 
     return (
         <div className='bg-nav p-2 py-8 w-full h-[8vh] rounded-sm border-b border-b-grey16 flex justify-between items-center'>
@@ -40,7 +36,7 @@ function Navbar() {
                         {navMenu.map((item, index) => (
                             <p
                                 className='cursor-pointer'
-                                onClick={() => { menuClicks(index) }}
+                                onClick={() => { setMenu(index) }}
                                 style={{  color: index === menu ? "white" : undefined}}
                             >
                                 {item}

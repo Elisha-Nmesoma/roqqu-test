@@ -1,8 +1,10 @@
 'use client'
 import { useState, useEffect } from 'react'
-
-const Btn = ({ sales }) => {
-    const [trade, setTrade] = useState(null);
+interface BtnProps {
+    sales:number;
+}
+const Btn: React.FC<BtnProps> = ({ sales }) => {
+    const [trade, setTrade] = useState<null | string>(null);
     const setBtc = () => {
         if (sales === 0) {
             setTrade("Buy")

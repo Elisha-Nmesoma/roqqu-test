@@ -1,15 +1,27 @@
-
 'use client';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import WebSocketOrderBook from './websocketOrderbook';
 import ClosePrice from './ClosePrice';
 
+// Define the type for the orderbook entries
+interface Order {
+  price: number;
+  amount: number;
+  total:number;
+}
+
+// Define the type for the orderbook structure
+interface Orderbook {
+  buy: Order[];
+  sell: Order[];
+}
+
 const OrderBook = () => {
-  const [orderbook, setOrderbook] = useState({ buy: [], sell: [] });
-  const [filteredOrderbook, setFilteredOrderbook] = useState({ buy: [], sell: [] });
-  const [num, setNum] = useState(10);
-  const [sliced, setSliced] = useState(false);
+  const [orderbook, setOrderbook] = useState<Orderbook>({ buy: [], sell: [] });
+  const [filteredOrderbook, setFilteredOrderbook] = useState<Orderbook>({ buy: [], sell: [] });
+  const [num, setNum] = useState<number>(10);
+  const [sliced, setSliced] = useState<boolean>(false);
   const [viewMode, setViewMode] = useState<'all' | 'buy' | 'sell'>('all');
 
   // Handle WebSocket data updates
@@ -18,7 +30,7 @@ const OrderBook = () => {
   }, [orderbook, num, viewMode]);
 
   // Apply the filter based on viewMode (all, buy, or sell)
-  const applyFilter = (orderbook) => {
+  const applyFilter = (orderbook: Orderbook) => {
     if (viewMode === 'all') {
       setFilteredOrderbook({
         buy: orderbook.buy.slice(0, num),
@@ -42,16 +54,10 @@ const OrderBook = () => {
   const showBuy = () => setViewMode('buy');
   const showSell = () => setViewMode('sell');
   const sliceClick = () => setSliced(!sliced);
-  const slices = (index) => {setNum((index + 1) * 5)};
+  const slices = (index: number) => {setNum((index + 1) * 5)};
 
-  const [activeButton, setActiveButton] = useState(1);
-  const handleButtonClick = (buttonIndex) => setActiveButton(buttonIndex);
-
-
-  const buyMaxTotal = Math.max(...orderbook.buy.map((order) => order.total));
-  const sellMaxTotal = Math.max(...orderbook.sell.map((order) => order.total));
-const buyTotal = orderbook.buy.reduce((acc, order) => acc + order.total, 0);
-const sellTotal = orderbook.sell.reduce((acc, order) => acc + order.total, 0);
+  const [activeButton, setActiveButton] = useState<number>(1);
+  const handleButtonClick = (buttonIndex: number) => setActiveButton(buttonIndex);
 
 
 
@@ -133,7 +139,7 @@ const sellTotal = orderbook.sell.reduce((acc, order) => acc + order.total, 0);
            : " "  }
              `}>
           {filteredOrderbook.sell.map((item, index) => (
-            <div key={index} className="flex justify-between gap-3 w-full bg-red" id="sell">
+            <div key={index} className="flex justify-between gap-3 w-full " id="sell">
               <p className="text-Orange w-2/6">{item.price.toFixed(2)}</p>
               <p className="text-white text-end  w-2/6 ">{item.amount.toFixed(4)}</p>
               <p className="text-white text-end  w-2/6">{item.total.toFixed(2)}</p>
